@@ -1,0 +1,44 @@
+<div class="row">
+  
+
+  <div class="col-12">
+<div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+        <input type="text" #filterInput class="form-control" [(ngModel)]="query" (keyup)="runFilter()" 
+        placeholder="Fact keyword?">
+        <span class="input-group-addon">{{filterInput.value.length}} (min 3)</span>
+        
+      </div>
+      <div *ngIf="searchResults && filterInput.value.length >= 3">
+          <small id="titleHelp" class="form-text text-muted">I've found: {{searchResults.total}} with '{{filterInput.value}}'</small>
+          <div class="btn-group viewmode-select" role="group">
+              <button type="button" class="btn"
+              [ngClass]="{'btn-primary': viewMode=='single', 'btn-secondary': viewMode!='single'}"
+              (click)="viewMode = 'single'"><i class="fa fa-square-o"></i></button>
+              <button type="button" class="btn"
+              [ngClass]="{'btn-primary': viewMode=='table', 'btn-secondary': viewMode!='table'}"
+               (click)="viewMode = 'table'"><i class="fa fa-table"></i></button>
+              <button type="button" class="btn" 
+              [ngClass]="{'btn-primary': viewMode=='list', 'btn-secondary': viewMode!='list'}"
+              (click)="viewMode= 'list'"><i class="fa fa-list"></i></button>              
+            </div>
+          
+          <div [ngSwitch]="viewMode">
+            <div *ngSwitchCase="'list'">
+              <app-chuck-facts-list [facts]="searchResults.result"></app-chuck-facts-list>
+            </div>
+            <div *ngSwitchCase="'table'">
+                <app-chuck-facts-table [facts]="searchResults.result"></app-chuck-facts-table>
+            </div>
+            <div *ngSwitchCase="'single'">
+                <app-chuck-facts-single [facts]="searchResults.result"></app-chuck-facts-single>
+            </div>
+          </div>
+      </div>
+      
+</div>
+  </div>
+</div>
+
+

@@ -1,0 +1,4 @@
+
+<ul class="list-group">
+    <li *ngFor="let fact of facts" class="list-group-item">{{fact.value}} <span *ngIf="fact.category" class="badge badge-info">{{fact.category[0]}}</span></li>
+</ul>

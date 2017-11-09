@@ -1,0 +1,33 @@
+<div *ngIf="fact" class="card text-center" style="width: 20rem;">
+    <form #f="ngForm">
+    <div class="progress" style="height: 3px;">
+      <!-- style="width: {{(interval - tick)*100/interval}}%;" -->
+        <div class="progress-bar" role="progressbar"
+        [style.width]="(interval - tick)*100/interval + '%'"
+        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    <img class="chuck-img" [src]="fact.icon_url" alt="Chuck said">
+    <div class="card-body">
+      <h4 class="card-title">Chuck Fact <div *ngIf="category.length >= 1"> about {{ category }}</div></h4>
+      <p class="card-text">{{fact.value}}</p>
+      
+      <div class="input-group">
+          <!--<input type="text" class="form-control" placeholder="Category?" aria-label="Category?">-->
+          <select id="catOld"
+          class="form-control" placeholder="Category?" aria-label="Category?"
+          [disabled]="inProgress"
+          (change)="changeCat(categorySelect.value)" 
+          [(ngModel)]="category" 
+          name="category" 
+          #categorySelect>
+              <option value="">All</option>
+              <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
+            </select>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" (click)="getWisdom()" [disabled]="inProgress">1 more!</button>
+          </span>
+        </div>
+      
+    </div>
+    </form>
+  </div>

@@ -1,0 +1,14 @@
+<div class="card text-center">
+    <div class="card-header">
+        Chuck Fact <div *ngIf="facts[active].category"> about {{ facts[active].category }}</div>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ facts[active].value }}</p>
+      <a href="#" class="btn btn-primary" *ngIf="active > 0" (click)="active = active-1">Prev</a>
+      <a href="#" class="btn btn-primary" *ngIf="active < (facts.length-1)" (click)="active = active+1">Next</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{active+1}} / {{facts.length}}
+    </div>
+</div>
+

@@ -1,0 +1,7 @@
+#wrapper {
+    padding: 1.5rem;
+}
+
+body {
+    min-height: 100vh !important;
+}
